@@ -43,14 +43,15 @@ exports.createNewPost = async (req, res, next) => {
 };
 
 /*
-tässä put, tää ei kyllä jostain syystä toimi
- */
+tässä put
+*/
 exports.updatePost = async (req, res, next) => {
   try {
-    let { title, body, id } = req.body;
-    let post = new Post(title, body);
-    await post.put(id);
-    res.status(200).json({ message: "Updated successfully" });
+    let { title, body } = req.body;
+    let postId = Number(req.params.id);
+
+    let post = Post.updateById(postId, title, body);
+    res.status(201).json({ message: "Post updated" });
   } catch (error) {
     console.log(error);
     next(error);

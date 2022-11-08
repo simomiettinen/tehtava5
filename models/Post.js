@@ -25,9 +25,8 @@ class Post {
   /*
   tässä put
    */
-  static put(id) {
-    let sql = `UPDATE posts SET title = ${this.title}, body = ${this.body} WHERE  id = ${id};`;
-
+  static updateById(id, title, body) {
+    let sql = `UPDATE posts SET title='${title}', body='${body}' WHERE id=${id}`;
     return db.execute(sql);
   }
 
